@@ -1,12 +1,14 @@
 const customExpress = require('./config/customExpress')
-const conexao = require('./database/conexao')
+const connection = require('./database/connection')
+const Tables = require('./database/tables')
 
-conexao.connect((erro) => {
+connection.connect((erro) => {
     if (erro) {
         console.log(erro)
     } else {
         console.log('Conectado com mysql')
         
+        Tables.init(connection)
         const app = customExpress()
 
         app.listen(3000, () => console.log('Servidor rodando na porta 3000'))
