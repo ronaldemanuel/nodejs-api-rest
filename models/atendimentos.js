@@ -3,8 +3,8 @@ const connection = require('../database/connection')
 
 class Atendimento {
     adiciona(atendimento, res) {
-        const data_criacao = new Date()
-        const data = moment(atendimento.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
+        const data_criacao = moment().format('YYYY-MM-DD HH:mm:ss')
+        const data = moment(atendimento.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
         
         const dataValida = moment(data).isSameOrAfter(data_criacao)
         const clienteValido = atendimento.cliente.length >= 5
