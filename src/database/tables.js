@@ -6,7 +6,7 @@ class Tables {
     }
 
     createCallsTable() {
-        const sql = 'CREATE TABLE IF NOT EXISTS calls (id INT NOT NULL AUTO_INCREMENT, client VARCHAR(100) NOT NULL, pet VARCHAR(50), service VARCHAR(50) NOT NULL, status VARCHAR(20) NOT NULL, comments TEXT, PRIMARY KEY(id));';
+        const sql = 'CREATE TABLE IF NOT EXISTS calls (id INT NOT NULL AUTO_INCREMENT, client VARCHAR(100) NOT NULL, pet VARCHAR(50), service VARCHAR(50) NOT NULL, date DATETIME NOT NULL, status VARCHAR(20) NOT NULL, comment TEXT, created_at DATETIME NOT NULL, PRIMARY KEY(id));';
 
         this.conn.query(sql, err => {
             if (err) {
