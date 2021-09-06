@@ -1,7 +1,8 @@
 const customExpress = require('./src/config/customExpress');
 const conn = require('./src/database/connection');
 const Tables = require('./src/database/tables');
-const PORT = 3000;
+require('dotenv/config');
+const PORT = process.env.PORT;
 
 conn.connect((err) => {
     if (err) {
