@@ -1,5 +1,5 @@
-const customExpress = require('./config/customExpress');
-const conn = require('./infrastructure/database/connection');
+const customExpress = require('./src/config/customExpress');
+const conn = require('./src/database/connection');
 const PORT = 3000;
 
 conn.connect((err) => {
