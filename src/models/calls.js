@@ -7,21 +7,25 @@ class Calls {
 
         conn.query(sql, (err, results) => {
             if (err) {
-                res.status(404).json(err);
+                res.status(400).json(err);
+            } else if (results.length == 0) {
+                res.status(204).json(results);
             } else {
                 res.status(200).json(results);
             }
         });
     }
-    
+
     show(id, res) {
         const sql = 'SELECT * FROM calls WHERE id = ?;';
     
         conn.query(sql, id, (err, result) => {
             if (err) {
-                    res.status(404).json(err);
+                res.status(400).json(err);
+            } else if (result.length == 0) {
+                res.status(404).json(result);
             } else {
-                    res.status(200).json(result);
+                res.status(200).json(result);
             }
         });
     }
