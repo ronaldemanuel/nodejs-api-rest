@@ -5,10 +5,10 @@ module.exports = app => {
     app.get('/atendimentos', (req, res) => {
         Calls.index(res);
     });
-    
+
     // SHOW
     app.get('/atendimentos/:id', (req, res) => {
-        const id = req.params.id;
+        const id = parseInt(req.params.id);
         Calls.show(id, res);
     });
 
