@@ -2,6 +2,18 @@ const moment = require('moment');
 const conn = require('../database/connection');
 
 class Calls {
+    index(res) {
+        const sql = 'SELECT * FROM calls;';
+
+        conn.query(sql, (err, results) => {
+            if (err) {
+                res.status(404).json(err);
+            } else {
+                res.status(200).json(results);
+            }
+        });
+    }
+
     store(requestCall, res) {
         const created_at = moment().format('YYYY-MM-DD HH:MM:SS');
         const date = moment(requestCall.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS');
