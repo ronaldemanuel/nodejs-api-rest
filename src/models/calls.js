@@ -20,12 +20,14 @@ class Calls {
         const sql = 'SELECT * FROM calls WHERE id = ?;';
     
         conn.query(sql, id, (err, result) => {
+            const call = result[0];
+
             if (err) {
                 res.status(400).json(err);
             } else if (result.length == 0) {
-                res.status(404).json(result);
+                res.status(404).json(call);
             } else {
-                res.status(200).json(result);
+                res.status(200).json(call);
             }
         });
     }
