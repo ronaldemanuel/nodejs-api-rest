@@ -13,6 +13,18 @@ class Calls {
             }
         });
     }
+    
+    show(id, res) {
+        const sql = 'SELECT * FROM calls WHERE id = ?;';
+    
+        conn.query(sql, id, (err, result) => {
+            if (err) {
+                    res.status(404).json(err);
+            } else {
+                    res.status(200).json(result);
+            }
+        });
+    }
 
     store(requestCall, res) {
         const created_at = moment().format('YYYY-MM-DD HH:MM:SS');
