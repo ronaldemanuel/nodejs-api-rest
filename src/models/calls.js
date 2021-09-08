@@ -71,6 +71,20 @@ class Calls {
         });
     }
 
+    destroy(id, res) {
+        const sql = `DELETE FROM calls WHERE id=${id};`;
+
+        conn.query(sql, (err, result) => {
+            if (err) {
+                res.status(400).json(err);
+            } else if (result.affectedRows === 0) {
+                res.status(404).json(result);
+            } else {
+                res.status(200).json({id: id});
+            }
+        });
+    }
+
     storeValidation(call) {
         const validClient = call.client.length >= 4;
         const validDate = moment().isSameOrBefore(call.created_at);
