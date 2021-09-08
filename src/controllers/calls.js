@@ -17,4 +17,11 @@ module.exports = app => {
         const call = req.body;
         Calls.store(call ,res);
     });
+
+    // UPDATE
+    app.patch('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id);
+        const values = req.body;
+        Calls.update(values, id, res);
+    });
 }
