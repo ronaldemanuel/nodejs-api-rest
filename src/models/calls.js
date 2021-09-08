@@ -54,6 +54,22 @@ class Calls {
         }
     }
 
+    update(values, id, res) {
+        if (values.date) {
+            values.date = moment(values.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS');
+        }
+
+        const sql = 'UPDATE calls SET ? WHERE id=?';
+
+        conn.query(sql, [values, id], (err, results) => {
+            if (err) {
+                res.status(400).json(err);
+            } else {
+                res.status(200).json(results);
+            }
+        });
+    }
+
     storeValidation(call) {
         const validClient = call.client.length >= 4;
         const validDate = moment().isSameOrAfter(call.created_at);
