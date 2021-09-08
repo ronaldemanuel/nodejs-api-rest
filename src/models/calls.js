@@ -49,7 +49,7 @@ class Calls {
                 if (err) {
                     res.status(400).json(err);
                 } else {
-                    res.status(201).json(results);
+                    res.status(201).json(call);
                 }
             });
         }
@@ -66,7 +66,7 @@ class Calls {
             if (err) {
                 res.status(400).json(err);
             } else {
-                res.status(200).json(results);
+                res.status(200).json({...values, id});
             }
         });
     }
@@ -87,7 +87,7 @@ class Calls {
 
     storeValidation(call) {
         const validClient = call.client.length >= 4;
-        const validDate = moment().isSameOrBefore(call.created_at);
+        const validDate = moment().isSameOrAfter(call.created_at);
 
         const validation = [
             {
