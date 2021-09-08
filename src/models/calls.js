@@ -39,6 +39,7 @@ class Calls {
         const call = {...requestCall, created_at, date};
 
         const errors = this.storeValidation(call);
+
         if (errors.length) {
             res.status(400).json(errors);
         } else {
@@ -72,7 +73,7 @@ class Calls {
 
     storeValidation(call) {
         const validClient = call.client.length >= 4;
-        const validDate = moment().isSameOrAfter(call.created_at);
+        const validDate = moment().isSameOrBefore(call.created_at);
 
         const validation = [
             {
