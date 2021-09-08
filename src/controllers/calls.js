@@ -24,4 +24,10 @@ module.exports = app => {
         const values = req.body;
         Calls.update(values, id, res);
     });
+
+    // DESTROY
+    app.delete('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id);
+        Calls.destroy(id, res);
+    });
 }
